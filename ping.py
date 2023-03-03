@@ -1,4 +1,5 @@
 import requests
+from decouple import config
 import time
 from twilio.rest import Client
 from twilio.twiml.voice_response import VoiceResponse, Say
@@ -36,7 +37,7 @@ def Ping(url, healthCheckTime, From, to):
 
 
 
-def HandlePingDownCall(from_user, to_user, text_body):
+def HandlePingDownCall(url, from_user, to_user, text_body):
     """
     This function will make a call to the number you specify, and say the text you specify
     
@@ -45,14 +46,14 @@ def HandlePingDownCall(from_user, to_user, text_body):
     :param text_body: The text body of the message that was sent to the Twilio number
     """
     # use env variables
-    account_sid = ""
-    auth_token = ""
+    account_sid = config('ACCOUNT_SID')
+    auth_token = config('AUTH_TOKEN')
 
     client = Client(account_sid, auth_token)
 
     to_number = to_user
     from_number = from_user
-    text_to_say = "YOUR WEBSITE IS DOWN"
+    text_to_say = f"YOUR WEBSITE {url} IS DOWN"
 
     response = VoiceResponse()
     response.say(text_to_say)
@@ -79,8 +80,8 @@ def HandlePingDownMessage(url, From, to):
     :param to: The phone number you want to send the message to
     """
 
-    account_sid = "" #Enter twilio account_sid and auth_token
-    auth_token = ""
+    account_sid = config('account_sid')
+    auth_token = config('auth_token')
 
     client = Client(account_sid, auth_token)
     to_number = to
