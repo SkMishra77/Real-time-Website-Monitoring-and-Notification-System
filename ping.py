@@ -80,4 +80,4 @@ if __name__ == "__main__":
         input('ENTER THE TIME( IN SECONDS ) YOU WANT TO REPEAT HEALTH CHECK'))
     from_user = input('ENTER THE TWILIO SENDING MOBILE NUMBER')
     to_user = input("ENTER THE PHONE NUMBER YOU WANT TO RECIEVE THE ALERT")
-    Ping("https://www.adaye.in/", healthCheckTime, from_user, to_user)
+    Ping(url, healthCheckTime, from_user, to_user)
