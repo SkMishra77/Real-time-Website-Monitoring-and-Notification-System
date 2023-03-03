@@ -26,7 +26,7 @@ def Ping(url, healthCheckTime, From, to):
 
         elif ping_cnt > 3:
             HandlePingDownMessage(url, From, to)
-            HandlePingDownCall(From, to)
+            HandlePingDownCall(url, From, to)
             time.sleep(600)
 
         else:
