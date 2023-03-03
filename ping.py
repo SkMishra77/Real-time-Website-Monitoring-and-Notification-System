@@ -4,6 +4,15 @@ from twilio.rest import Client
 from twilio.twiml.voice_response import VoiceResponse, Say
 
 def Ping(url, healthCheckTime, From, to):
+    """
+    It checks if a website is up or down, and if it's down, it sends a text message and makes a phone
+    call to the specified phone number
+    
+    :param url: The URL of the website you want to ping
+    :param healthCheckTime: How often you want to check the URL
+    :param From: The phone number that will be sending the text message
+    :param to: The phone number you want to send the text message to
+    """
 
     ping_cnt = 0
 
@@ -28,6 +37,13 @@ def Ping(url, healthCheckTime, From, to):
 
 
 def HandlePingDownCall(from_user, to_user, text_body):
+    """
+    This function will make a call to the number you specify, and say the text you specify
+    
+    :param from_user: The number you want to call from
+    :param to_user: The phone number you want to call
+    :param text_body: The text body of the message that was sent to the Twilio number
+    """
     # use env variables
     account_sid = ""
     auth_token = ""
@@ -54,6 +70,14 @@ def HandlePingDownCall(from_user, to_user, text_body):
 
 # all parameter are passes as string
 def HandlePingDownMessage(url, From, to):
+    """
+    This function takes in a url, a from number, and a to number, and sends a text message to the to
+    number saying that the url is down
+    
+    :param url: The URL to be monitored
+    :param From: This is the Twilio number that you will be sending the SMS from
+    :param to: The phone number you want to send the message to
+    """
 
     account_sid = "" #Enter twilio account_sid and auth_token
     auth_token = ""
